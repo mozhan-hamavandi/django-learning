@@ -1,0 +1,33 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Articles</title>
+        <link rel = "stylesheet" href="{%static 'styles.css' %}">
+    </head>
+    <body>
+        <h1>Welcom to my site</h1>
+        <h2>Here you can see the list of articles:</h2>
+        <nav class="navbar">
+            <div class="navbar-brand">
+
+                <a href="{% url 'articles:create'  %}" class="navbar-item"><strong>Write your articles here!</strong></a>
+            </div>
+        </nav>
+        <h1><a href="{% url 'articles:list' %}"><img src="{% static 'download.png'}" /></a></h1>
+        <div class="articles">
+            {% for article in articles %}
+            <div class="article">
+                
+                <h2>{{article.title}}</h2>
+                <p>{{article.intro}}</p>
+                <p>{{article.date}}</p>
+                <a href="{% url 'articles:detail' article.slug %}">Read more</a>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
